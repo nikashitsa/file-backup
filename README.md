@@ -4,7 +4,7 @@ nikashitsa/file-backup
 
 Provides [duplicity](http://duplicity.nongnu.org/) backup to [S3](https://aws.amazon.com/s3/) under cron (based on Alpine Linux).
 
-### Usage
+### Install
 
 Please have a look at docker-compose.example.yml.
 
@@ -24,7 +24,7 @@ Please have a look at docker-compose.example.yml.
 2. Change `REMOTE_URL` with your value
 3. Set your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` values
 
-Launch cron
+### Start
 ```
 docker-compose up -d
 ```
@@ -36,6 +36,9 @@ Additional scripts are provided to make it easier to manually invoke backups.
 docker exec -it myfilebackup backup [full|incremental]
 docker exec -it myfilebackup status
 docker exec -it myfilebackup restore
-# http://duplicity.nongnu.org/duplicity.1.html#sect8
+```
+
+You can restore backup to specified time. More info [here](http://duplicity.nongnu.org/duplicity.1.html#sect8).
+```
 docker exec -it myfilebackup restore -t 1D
 ```
