@@ -1,0 +1,3 @@
+#!/bin/sh
+
+duplicity collection-status ${REMOTE_URL}

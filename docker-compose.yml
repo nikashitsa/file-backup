@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  file_backup:
+    build: .
+    mem_limit: 50M
+    cpu_quota: 50000
+    volumes:
+      - ./your_files:/data
+      - ./cache:/root/.cache/duplicity
+    environment:
+      REMOTE_URL: ''
+      PARAMS: ''
+      BACKUP_LIFETIME: ''
+      BACKUP_TIME: ''
+      AWS_ACCESS_KEY_ID: ''
+      AWS_SECRET_ACCESS_KEY: ''
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '5'

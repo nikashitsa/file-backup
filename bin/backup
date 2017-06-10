@@ -1,0 +1,15 @@
+#!/bin/sh
+
+duplicity $@ ${PARAMS} \
+  --allow-source-mismatch \
+  --no-encryption \
+  /data \
+  ${REMOTE_URL}
+
+if [ ! -z "$BACKUP_LIFETIME" ]; then
+  echo '=== Removing old backups ==='
+  duplicity remove-older-than ${BACKUP_LIFETIME} --force ${REMOTE_URL}
+fi
+
+echo '=== Cleanup ==='
+duplicity cleanup --no-encryption --force ${REMOTE_URL}

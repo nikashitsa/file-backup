@@ -1,0 +1,7 @@
+#!/bin/sh
+
+duplicity restore $@ \
+    --force \
+    --no-encryption \
+    ${REMOTE_URL} \
+    /data
