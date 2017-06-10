@@ -2,11 +2,11 @@ nikashitsa/file-backup
 ======================
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg) [![](https://img.shields.io/docker/stars/nikashitsa/file-backup.svg)](https://hub.docker.com/r/nikashitsa/file-backup 'DockerHub') [![](https://img.shields.io/docker/pulls/nikashitsa/file-backup.svg)](https://hub.docker.com/r/nikashitsa/file-backup 'DockerHub')
 
-Provides [duplicity](http://duplicity.nongnu.org/) backup to [S3](https://aws.amazon.com/s3/) under cron (based on Alpine Linux).
+Provides [duplicity](http://duplicity.nongnu.org/) incremental backup to [S3](https://aws.amazon.com/s3/) under cron (based on Alpine Linux).
 
 ### Install
 
-Please have a look at docker-compose.example.yml.
+Please have a look at docker-compose.example.yml
 
 ```
 ...
