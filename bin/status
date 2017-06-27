@@ -1,3 +1,6 @@
 #!/bin/sh
 
+rm -f /root/.cache/duplicity/*/*.lock
+
+echo '=== Status ==='
 duplicity collection-status ${REMOTE_URL}

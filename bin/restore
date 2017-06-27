@@ -1,5 +1,8 @@
 #!/bin/sh
 
+rm -f /root/.cache/duplicity/*/*.lock
+
+echo '=== Restore ==='
 duplicity restore $@ \
     --force \
     --no-encryption \
