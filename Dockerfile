@@ -1,5 +1,5 @@
 FROM alpine:3.6
-MAINTAINER Nikita Verkhovin <vernik91@gmail.com>
+LABEL maintainer="Nikita Verkhovin <vernik91@gmail.com>"
 
 RUN set -x \
   && apk add --no-cache \
