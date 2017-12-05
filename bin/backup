@@ -1,7 +1,5 @@
 #!/bin/sh
 
-rm -f /root/.cache/duplicity/*/*.lock
-
 echo '=== Backup ==='
 duplicity $@ ${PARAMS} \
   --allow-source-mismatch \
