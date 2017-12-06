@@ -5,12 +5,32 @@ duplicity $@ ${PARAMS} \
   --allow-source-mismatch \
   --no-encryption \
   /data \
-  ${REMOTE_URL}
+  ${REMOTE_URL} || BACKUP_ERROR=1
 
 if [ ! -z "$BACKUP_LIFETIME" ]; then
   echo '=== Removing old backups ==='
-  duplicity remove-older-than ${BACKUP_LIFETIME} --force ${REMOTE_URL}
+  duplicity remove-older-than ${BACKUP_LIFETIME} --force ${REMOTE_URL} || BACKUP_ERROR=1
 fi
 
 echo '=== Cleanup ==='
-duplicity cleanup --no-encryption --force ${REMOTE_URL}
+duplicity cleanup --no-encryption --force ${REMOTE_URL} || BACKUP_ERROR=1
+
+
+if [[ "${TELEGRAM_TOKEN}" && "${TELEGRAM_CHAT_ID}" ]]; then
+  echo '=== Telegram notification ==='
+  TELEGRAM=1
+fi
+
+if [ "${BACKUP_ERROR}" ]; then
+  if [ "${TELEGRAM}" ]; then
+  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+    -F chat_id=${TELEGRAM_CHAT_ID} \
+    -F text="❌ Backup is failed ${REMOTE_URL} (${HOSTNAME})"
+  fi
+else
+  if [ "${TELEGRAM}" ]; then
+  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+    -F chat_id=${TELEGRAM_CHAT_ID} \
+    -F text="✅ Backup is done ${REMOTE_URL} (${HOSTNAME})"
+  fi
+fi

@@ -1,10 +1,10 @@
-version: '2'
+version: '2.2'
 services:
 
   file_backup:
     build: .
-    mem_limit: 50M
-    cpu_quota: 50000
+    mem_limit: 50mb
+    cpus: 0.5
     volumes:
       - ./your_files:/data
       - ./cache:/root/.cache/duplicity
@@ -15,6 +15,8 @@ services:
       BACKUP_TIME: ''
       AWS_ACCESS_KEY_ID: ''
       AWS_SECRET_ACCESS_KEY: ''
+      TELEGRAM_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
     logging:
       options:
         max-size: '10m'

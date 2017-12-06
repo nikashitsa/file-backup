@@ -1,10 +1,10 @@
-version: '2'
+version: '2.2'
 services:
 
   file_backup:
     image: nikashitsa/file-backup
-    mem_limit: 50M # perhaps you need to increase this limit
-    cpu_quota: 50000 # 50%
+    mem_limit: 50mb # perhaps you need to increase this limit
+    cpus: 0.5 # 50%
     volumes:
       - /path/to/your/files:/data
       - /file-backup/cache:/root/.cache/duplicity
@@ -15,6 +15,8 @@ services:
       BACKUP_TIME: '0 3 * * *' # once per day.
       AWS_ACCESS_KEY_ID: 'put your value here'
       AWS_SECRET_ACCESS_KEY: 'put your value here'
+      TELEGRAM_TOKEN: 'put your value here' # optional
+      TELEGRAM_CHAT_ID: 'put your value here' # optional
     logging:
       options:
         max-size: '10m'

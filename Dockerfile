@@ -6,6 +6,7 @@ RUN set -x \
     py-pip \
     duplicity \
     ca-certificates \
+    curl \
     && pip install fasteners
 
 COPY bin/* /bin/
