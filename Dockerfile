@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.9
 LABEL maintainer="Nikita Verkhovin <vernik91@gmail.com>"
 
 RUN set -x \
